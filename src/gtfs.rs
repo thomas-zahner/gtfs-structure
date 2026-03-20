@@ -1,4 +1,4 @@
-use crate::{objects::*, Error, RawGtfs};
+use crate::{Error, RawGtfs, objects::*};
 use chrono::prelude::NaiveDate;
 use std::collections::{HashMap, HashSet};
 use std::convert::TryFrom;

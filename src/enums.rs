@@ -467,7 +467,7 @@ impl<'de> Deserialize<'de> for ExactTimes {
             &_ => {
                 return Err(serde::de::Error::custom(format!(
                     "Invalid value `{s}`, expected 0 or 1"
-                )))
+                )));
             }
         })
     }
@@ -562,7 +562,7 @@ impl<'de> Deserialize<'de> for TransferType {
             s => {
                 return Err(serde::de::Error::custom(format!(
                     "Invalid value `{s}`, expected 0, 1, 2, 3, 4, 5"
-                )))
+                )));
             }
         })
     }
@@ -652,7 +652,7 @@ impl<'de> Deserialize<'de> for DefaultFareCategory {
             &_ => {
                 return Err(serde::de::Error::custom(format!(
                     "Invalid value `{s}`, expected 0 or 1"
-                )))
+                )));
             }
         })
     }
