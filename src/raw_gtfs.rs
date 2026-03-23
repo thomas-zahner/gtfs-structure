@@ -1,6 +1,6 @@
-use crate::objects::*;
 use crate::Error;
 use crate::GtfsReader;
+use crate::objects::*;
 use std::path::Path;
 use web_time::Duration;
 

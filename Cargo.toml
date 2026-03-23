@@ -8,7 +8,7 @@ authors = [
 ]
 repository = "https://github.com/rust-transit/gtfs-structure"
 license = "MIT"
-edition = "2018"
+edition = "2024"
 
 [features]
 default = ["read-url"]

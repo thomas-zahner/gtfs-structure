@@ -81,7 +81,7 @@ impl GtfsReader {
 
     /// Should the fields be trimmed (default: true)
     ///
-    /// It is quite time consumming
+    /// It is quite time consuming
     /// If performance is an issue, and if your data is high quality, you can set it to false
     pub fn trim_fields(mut self, trim_fields: bool) -> Self {
         self.trim_fields = trim_fields;

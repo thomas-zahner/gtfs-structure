@@ -1,8 +1,8 @@
 use std::collections::HashMap;
 
-use crate::objects::*;
 use crate::Gtfs;
 use crate::RawGtfs;
+use crate::objects::*;
 use chrono::NaiveDate;
 use rgb::RGB8;
 
