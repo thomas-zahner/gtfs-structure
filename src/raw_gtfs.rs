@@ -57,7 +57,7 @@ pub struct RawGtfs {
     /// Base urls to ticket shops
     pub ticketing_deep_links: Option<Result<Vec<TicketingDeepLink>, Error>>,
     /// Identifiers to pass to ticket shops
-    pub ticketing_identifiers: Option<Result<Vec<TicketingIdentifier>, Error>>
+    pub ticketing_identifiers: Option<Result<Vec<TicketingIdentifier>, Error>>,
 }
 
 impl RawGtfs {
@@ -83,8 +83,14 @@ impl RawGtfs {
             "  Translations: {}",
             optional_file_summary(&self.translations)
         );
-        println!("  Ticketing deep links: {}", optional_file_summary(&self.ticketing_deep_links));
-        println!("  Ticketing identifiers: {}", optional_file_summary(&self.ticketing_identifiers));
+        println!(
+            "  Ticketing deep links: {}",
+            optional_file_summary(&self.ticketing_deep_links)
+        );
+        println!(
+            "  Ticketing identifiers: {}",
+            optional_file_summary(&self.ticketing_identifiers)
+        );
     }
 
     /// Reads from an url (if starts with http), or a local path (either a directory or zipped file)
