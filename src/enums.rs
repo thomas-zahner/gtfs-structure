@@ -657,3 +657,16 @@ impl<'de> Deserialize<'de> for DefaultFareCategory {
         })
     }
 }
+
+/// Specifies whether tickets can be bought for this item
+#[derive(Debug, Derivative, Deserialize, Serialize, Copy, Clone, PartialEq, Eq)]
+#[derivative(Default)]
+pub enum TicketingType {
+    /// If a ticketing_deep_link_id is set, tickets are available
+    #[derivative(Default)]
+    #[serde(rename = "0")]
+    Available,
+    /// Tickets are unavailable
+    #[serde(rename = "1")]
+    Unavailable,
+}

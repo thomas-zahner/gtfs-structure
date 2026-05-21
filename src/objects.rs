@@ -261,6 +261,10 @@ pub struct RawStopTime {
     /// Indicates if arrival and departure times for a stop are strictly adhered to by the vehicle or if they are instead approximate and/or interpolated times
     #[serde(default)]
     pub timepoint: TimepointType,
+    /// This field is not part of the main GTFS specification, it is part of the Google Transit Ticketing extension
+    /// Enable or disable buying tickets via a deep link
+    #[serde(default)]
+    pub ticketing_type: TicketingType,
 }
 
 /// The moment where a vehicle, running on [Trip] stops at a [Stop]. See <https://gtfs.org/reference/static/#stopstxt>
@@ -360,6 +364,9 @@ pub struct Route {
     /// Indicates whether a rider can alight from the transit vehicle at any point along the vehicle’s travel path
     #[serde(default)]
     pub continuous_drop_off: ContinuousPickupDropOff,
+    /// This field is not part of the main GTFS specification, it is part of the Google Transit Ticketing extension
+    /// Enable or disable buying tickets via a deep link
+    pub ticketing_deep_link_id: Option<String>,
 }
 
 impl Route {
@@ -445,6 +452,14 @@ pub struct RawTrip {
     /// Indicates whether bikes are allowed
     #[serde(default)]
     pub bikes_allowed: BikesAllowedType,
+    /// This field is not part of the main GTFS specification, it is part of the Google Transit Ticketing extension
+    /// Trip ID to pass to a ticket shop
+    #[serde(default)]
+    pub ticketing_trip_id: Option<String>,
+    /// This field is not part of the main GTFS specification, it is part of the Google Transit Ticketing extension
+    /// Enable or disable buying tickets via a deep link
+    #[serde(default)]
+    pub ticketing_type: TicketingType,
 }
 
 impl Type for RawTrip {
@@ -547,6 +562,9 @@ pub struct Agency {
     /// Email address actively monitored by the agency’s customer service department
     #[serde(rename = "agency_email")]
     pub email: Option<String>,
+    /// This field is not part of the main GTFS specification, it is part of the Google Transit Ticketing extension
+    /// Trip ID to pass to a ticket shop
+    pub ticketing_deep_link_id: Option<String>,
 }
 
 impl Type for Agency {
@@ -905,6 +923,32 @@ impl Id for RawPathway {
     fn id(&self) -> &str {
         &self.id
     }
+}
+
+/// This object is not part of the main GTFS specification, it is part of the Google Transit Ticketing extension
+/// A mapping of the GTFS-identifiers to the ticket shop identifiers
+#[derive(Clone, Debug, Serialize, Deserialize, Default)]
+pub struct TicketingIdentifier {
+    /// Stop ID used by the ticket shop
+    pub ticketing_stop_id: String,
+    /// GTFS-side stop id
+    pub stop_id: String,
+    /// GTFS-side agency id
+    pub agency_id: String,
+}
+
+/// This object is not part of the main GTFS specification, it is part of the Google Transit Ticketing extension
+/// The base url to a ticket shop without the trip specific parameters
+#[derive(Clone, Debug, Serialize, Deserialize, Default)]
+pub struct TicketingDeepLink {
+    /// Unique identifier for this base link
+    pub ticketing_deep_link_id: String,
+    /// URL to be used for buying a ticket on the web
+    pub web_url: Option<String>,
+    /// URI to be used for buying a ticket in an android app
+    pub android_intent_url: Option<String>,
+    /// URL used to use on iOS
+    pub ios_universal_link_url: Option<String>,
 }
 
 impl Type for RawPathway {
