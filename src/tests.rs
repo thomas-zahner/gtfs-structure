@@ -561,3 +561,39 @@ fn fares_v2() {
     assert_eq!(gtfs.rider_categories.len(), 2);
     assert_eq!(gtfs.rider_categories["concession"], expected);
 }
+
+#[test]
+fn ticketing_extension() {
+    let gtfs = RawGtfs::from_path("fixtures/ticketing-extension").expect("impossible to read gtfs");
+
+    assert_eq!(gtfs.ticketing_deep_links.unwrap().unwrap().len(), 1);
+    assert_eq!(gtfs.ticketing_identifiers.unwrap().unwrap().len(), 3);
+    assert_eq!(gtfs.routes.as_ref().unwrap().len(), 2);
+    assert_eq!(gtfs.trips.unwrap().len(), 2);
+    assert_eq!(gtfs.agencies.as_ref().unwrap().len(), 1);
+    assert!(
+        gtfs.agencies
+            .unwrap()
+            .first()
+            .unwrap()
+            .ticketing_deep_link_id
+            .is_some()
+    );
+    assert!(
+        gtfs.routes
+            .as_ref()
+            .unwrap()
+            .last()
+            .unwrap()
+            .ticketing_deep_link_id
+            .is_none()
+    );
+    assert!(
+        gtfs.routes
+            .unwrap()
+            .first()
+            .unwrap()
+            .ticketing_deep_link_id
+            .is_some()
+    );
+}

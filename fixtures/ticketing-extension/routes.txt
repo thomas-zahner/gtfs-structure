@@ -1,0 +1,3 @@
+route_id,route_short_name,route_long_name,route_desc,route_type,route_url,agency_id,ticketing_deep_link_id
+route1,667,,,2,,agency,ticket-shop
+route2,689,,,2,,agency,

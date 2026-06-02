@@ -1,0 +1,7 @@
+trip_id,arrival_time,departure_time,stop_id,stop_sequence,ticketing_type
+trip1,13:57:00,13:57:00,stop1,0,0
+trip1,14:09:00,14:10:00,stop2,1,0
+trip1,14:17:00,14:18:00,stop3,2,0
+trip2,14:24:00,14:25:00,stop1,0,0
+trip2,14:34:00,14:35:00,stop2,1,1
+trip2,14:41:00,14:42:00,stop3,2,0
