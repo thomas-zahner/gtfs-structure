@@ -251,9 +251,11 @@ impl RawGtfsReader {
         reader: T,
     ) -> Result<RawGtfs, Error> {
         let start_of_read_instant = Instant::now();
-        let mut hasher = Sha256::new();
+        let hasher = Sha256::new();
         let mut buf_reader = std::io::BufReader::new(reader);
-        let _n = std::io::copy(&mut buf_reader, &mut hasher)?;
+        let mut hash_io = digest_io::IoWrapper(hasher);
+        let _n = std::io::copy(&mut buf_reader, &mut hash_io)?;
+        let digest_io::IoWrapper(hasher) = hash_io;
         let hash = hasher.finalize();
         let mut archive = zip::ZipArchive::new(buf_reader)?;
         let mut file_mapping = HashMap::new();
@@ -346,7 +348,7 @@ impl RawGtfsReader {
             read_duration: start_of_read_instant.elapsed(),
             files,
             source_format: crate::SourceFormat::Zip,
-            sha256: Some(format!("{hash:x}")),
+            sha256: Some(base16ct::lower::encode_string(&hash)),
         };
 
         if self.reader.unkown_enum_as_default {

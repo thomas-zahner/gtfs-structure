@@ -20,10 +20,12 @@ csv = "1.4"
 derivative = "2.2"
 serde = { version = "1.0", features = ["rc"] }
 serde_derive = "1.0"
-chrono = "0.4.43"
+chrono = "0.4.45"
 itertools = "0.14"
-sha2 = "0.10"
-zip = { version = "7.2", default-features = false, features = ["deflate"] }
+sha2 = "0.11"
+digest-io = "0.1.0"
+base16ct = { version = "1.0", features = ["alloc"] }
+zip = { version = "8.6", default-features = false, features = ["deflate"] }
 thiserror = "2"
 rgb = "0.8"
 web-time = "1.1.0"
