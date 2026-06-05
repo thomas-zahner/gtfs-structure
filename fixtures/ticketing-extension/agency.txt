@@ -1,0 +1,2 @@
+agency_id,agency_name,agency_url,agency_timezone,ticketing_deep_link_id
+agency,Agency,https://example.com,Etc/UTC,ticket-shop

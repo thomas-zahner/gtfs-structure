@@ -54,6 +54,10 @@ pub struct RawGtfs {
     pub sha256: Option<String>,
     /// All translations, None if the file was absent as it is not mandatory
     pub translations: Option<Result<Vec<RawTranslation>, Error>>,
+    /// Base urls to ticket shops
+    pub ticketing_deep_links: Option<Result<Vec<TicketingDeepLink>, Error>>,
+    /// Identifiers to pass to ticket shops
+    pub ticketing_identifiers: Option<Result<Vec<TicketingIdentifier>, Error>>,
 }
 
 impl RawGtfs {
@@ -78,6 +82,14 @@ impl RawGtfs {
         println!(
             "  Translations: {}",
             optional_file_summary(&self.translations)
+        );
+        println!(
+            "  Ticketing deep links: {}",
+            optional_file_summary(&self.ticketing_deep_links)
+        );
+        println!(
+            "  Ticketing identifiers: {}",
+            optional_file_summary(&self.ticketing_identifiers)
         );
     }
 

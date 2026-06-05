@@ -1,0 +1,3 @@
+trip_id,service_id,route_id,shape_id,trip_headsign,trip_short_name,direction_id,block_id,wheelchair_accessible,bikes_allowed,ticketing_trip_id,ticketing_type
+trip1,service1,route1,,,,,,0,1,test,0
+trip2,service1,route2,,,,,,0,1,,0

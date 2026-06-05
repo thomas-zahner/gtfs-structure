@@ -358,8 +358,7 @@ fn create_trips(
     }
 
     for trip in &mut trips.values_mut() {
-        trip.stop_times
-            .sort_by(|a, b| a.stop_sequence.cmp(&b.stop_sequence));
+        trip.stop_times.sort_by_key(|st| st.stop_sequence);
     }
 
     for f in raw_frequencies {

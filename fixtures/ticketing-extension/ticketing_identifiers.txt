@@ -1,0 +1,4 @@
+ticketing_stop_id,stop_id,agency_id
+ticketing-stop1,stop1,agency
+ticketing-stop2,stop2,agency
+ticketing-stop3,stop3,agency

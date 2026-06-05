@@ -1,0 +1,2 @@
+ticketing_deep_link_id,web_url,android_intent_url,ios_universal_link_url
+ticket-shop,https://example.com/tickets,,
