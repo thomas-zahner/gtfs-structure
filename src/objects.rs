@@ -261,7 +261,7 @@ pub struct RawStopTime {
     /// Indicates if arrival and departure times for a stop are strictly adhered to by the vehicle or if they are instead approximate and/or interpolated times
     #[serde(default)]
     pub timepoint: TimepointType,
-    /// This field is not part of the main GTFS specification, it is part of the Google Transit Ticketing extension
+    /// This field is not part of the main GTFS specification, it is part of the Google Transit Ticketing extension.
     /// Enable or disable buying tickets via a deep link
     #[serde(default)]
     pub ticketing_type: TicketingType,
@@ -562,7 +562,7 @@ pub struct Agency {
     /// Email address actively monitored by the agency’s customer service department
     #[serde(rename = "agency_email")]
     pub email: Option<String>,
-    /// This field is not part of the main GTFS specification, it is part of the Google Transit Ticketing extension
+    /// This field is not part of the main GTFS specification, it is part of the Google Transit Ticketing extension.
     /// Trip ID to pass to a ticket shop
     pub ticketing_deep_link_id: Option<String>,
 }
@@ -925,7 +925,7 @@ impl Id for RawPathway {
     }
 }
 
-/// This object is not part of the main GTFS specification, it is part of the Google Transit Ticketing extension
+/// This object is not part of the main GTFS specification, it is part of the Google Transit Ticketing extension.
 /// A mapping of the GTFS-identifiers to the ticket shop identifiers
 #[derive(Clone, Debug, Serialize, Deserialize, Default)]
 pub struct TicketingIdentifier {
@@ -937,7 +937,7 @@ pub struct TicketingIdentifier {
     pub agency_id: String,
 }
 
-/// This object is not part of the main GTFS specification, it is part of the Google Transit Ticketing extension
+/// This object is not part of the main GTFS specification, it is part of the Google Transit Ticketing extension.
 /// The base url to a ticket shop without the trip specific parameters
 #[derive(Clone, Debug, Serialize, Deserialize, Default)]
 pub struct TicketingDeepLink {
