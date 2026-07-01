@@ -39,8 +39,6 @@ We kept some names even if they can be confusing (a [Calendar] will be reference
 #![warn(missing_docs)]
 
 #[macro_use]
-extern crate derivative;
-#[macro_use]
 extern crate serde_derive;
 
 mod enums;

@@ -31,24 +31,29 @@ use web_time::Instant;
 ///assert_eq!(0, gtfs.stop_times?.len());
 /// # Ok::<(), gtfs_structures::error::Error>(())
 ///```
-#[derive(Derivative)]
-#[derivative(Default)]
 pub struct GtfsReader {
     /// [crate::objects::StopTime] are very large and not always needed. This allows to skip reading them
-    #[derivative(Default(value = "true"))]
     pub read_stop_times: bool,
     /// [crate::objects::Shape] are very large and not always needed. This allows to skip reading them
-    #[derivative(Default(value = "true"))]
     pub read_shapes: bool,
     /// If a an enumeration has an unknown value, should we use the default value
-    #[derivative(Default(value = "false"))]
     pub unkown_enum_as_default: bool,
     /// Avoid trimming the fields
     ///
     /// It is quite time consuming
     /// If performance is an issue, and if your data is high quality, you can switch it off
-    #[derivative(Default(value = "true"))]
     pub trim_fields: bool,
+}
+
+impl Default for GtfsReader {
+    fn default() -> Self {
+        GtfsReader {
+            read_stop_times: true,
+            read_shapes: true,
+            unkown_enum_as_default: false,
+            trim_fields: true,
+        }
+    }
 }
 
 impl GtfsReader {

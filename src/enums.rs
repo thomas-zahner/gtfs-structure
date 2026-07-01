@@ -23,11 +23,10 @@ pub enum ObjectType {
 }
 
 /// Describes the kind of [Stop]. See <https://gtfs.org/reference/static/#stopstxt> `location_type`
-#[derive(Derivative, Debug, Copy, Clone, PartialEq, Eq, Hash)]
-#[derivative(Default(bound = ""))]
+#[derive(Debug, Default, Copy, Clone, PartialEq, Eq, Hash)]
 pub enum LocationType {
     /// Stop (or Platform). A location where passengers board or disembark from a transit vehicle. Is called a platform when defined within a parent_station
-    #[derivative(Default)]
+    #[default]
     StopPoint,
     /// Station. A physical structure or area that contains one or more platform
     StopArea,
@@ -88,8 +87,7 @@ impl Serialize for LocationType {
 /// Describes the kind of [Route]. See <https://gtfs.org/reference/static/#routestxt> `route_type`
 ///
 /// -ome route types are extended GTFS (<https://developers.google.com/transit/gtfs/reference/extended-route-types)>
-#[derive(Debug, Derivative, Copy, Clone, PartialEq, Eq, Hash)]
-#[derivative(Default(bound = ""))]
+#[derive(Debug, Default, Copy, Clone, PartialEq, Eq, Hash)]
 pub enum RouteType {
     /// Tram, Streetcar, Light rail. Any light rail or street level system within a metropolitan area
     Tramway,
@@ -98,7 +96,7 @@ pub enum RouteType {
     /// Used for intercity or long-distance travel
     Rail,
     /// Used for short- and long-distance bus routes
-    #[derivative(Default)]
+    #[default]
     Bus,
     /// Used for short- and long-distance boat service
     Ferry,
@@ -167,11 +165,10 @@ impl Serialize for RouteType {
 }
 
 /// Describes if and how a traveller can board or alight the vehicle. See <https://gtfs.org/reference/static/#stop_timestxt> `pickup_type` and `dropoff_type`
-#[derive(Debug, Derivative, Copy, Clone, PartialEq, Eq, Hash)]
-#[derivative(Default(bound = ""))]
+#[derive(Debug, Default, Copy, Clone, PartialEq, Eq, Hash)]
 pub enum PickupDropOffType {
     /// Regularly scheduled pickup or drop off (default when empty).
-    #[derivative(Default)]
+    #[default]
     Regular,
     /// No pickup or drop off available.
     NotAvailable,
@@ -225,13 +222,12 @@ impl Serialize for PickupDropOffType {
 /// Indicates whether a rider can board the transit vehicle anywhere along the vehicle’s travel path
 ///
 /// Those values are only defined on <https://developers.google.com/transit/gtfs/reference#routestxt,> not on <https://gtfs.org/reference/static/#routestxt>
-#[derive(Debug, Derivative, Copy, Clone, PartialEq, Eq, Hash)]
-#[derivative(Default(bound = ""))]
+#[derive(Debug, Default, Copy, Clone, PartialEq, Eq, Hash)]
 pub enum ContinuousPickupDropOff {
     /// Continuous stopping pickup or drop off.
     Continuous,
     /// No continuous stopping pickup or drop off (default when empty).
-    #[derivative(Default)]
+    #[default]
     NotAvailable,
     /// Must phone agency to arrange continuous stopping pickup or drop off.
     ArrangeByPhone,
@@ -281,14 +277,13 @@ impl<'de> Deserialize<'de> for ContinuousPickupDropOff {
 }
 
 /// Describes if the stop time is exact or not. See <https://gtfs.org/reference/static/#stop_timestxt> `timepoint`
-#[derive(Debug, Derivative, Serialize, Copy, Clone, PartialEq, Eq, Hash)]
-#[derivative(Default)]
+#[derive(Debug, Default, Serialize, Copy, Clone, PartialEq, Eq, Hash)]
 pub enum TimepointType {
     /// Times are considered approximate
     #[serde(rename = "0")]
     Approximate = 0,
     /// Times are considered exact
-    #[derivative(Default)]
+    #[default]
     #[serde(rename = "1")]
     Exact = 1,
 }
@@ -310,11 +305,10 @@ impl<'de> Deserialize<'de> for TimepointType {
 }
 
 /// Generic enum to define if a service (like wheelchair boarding) is available
-#[derive(Debug, Derivative, PartialEq, Eq, Hash, Clone, Copy)]
-#[derivative(Default)]
+#[derive(Debug, Default, PartialEq, Eq, Hash, Clone, Copy)]
 pub enum Availability {
     /// No information if the service is available
-    #[derivative(Default)]
+    #[default]
     InformationNotAvailable,
     /// The service is available
     Available,
@@ -384,11 +378,10 @@ pub enum DirectionType {
 }
 
 /// Is the [Trip] accessible with a bike. See <https://gtfs.org/reference/static/#tripstxt> `bikes_allowed`
-#[derive(Debug, Derivative, Copy, Clone, PartialEq, Eq, Hash)]
-#[derivative(Default())]
+#[derive(Debug, Default, Copy, Clone, PartialEq, Eq, Hash)]
 pub enum BikesAllowedType {
     /// No bike information for the trip
-    #[derivative(Default)]
+    #[default]
     NoBikeInfo,
     /// Vehicle being used on this particular trip can accommodate at least one bicycle
     AtLeastOneBike,
@@ -474,11 +467,10 @@ impl<'de> Deserialize<'de> for ExactTimes {
 }
 
 /// Defines how many transfers can be done with on [FareAttribute]
-#[derive(Debug, Derivative, Copy, Clone, PartialEq, Eq, Hash)]
-#[derivative(Default(bound = ""))]
+#[derive(Debug, Default, Copy, Clone, PartialEq, Eq, Hash)]
 pub enum Transfers {
     /// Unlimited transfers are permitted
-    #[derivative(Default)]
+    #[default]
     Unlimited,
     /// No transfers permitted on this fare
     NoTransfer,
@@ -521,12 +513,11 @@ impl Serialize for Transfers {
     }
 }
 /// Defines the type of a [StopTransfer]
-#[derive(Debug, Serialize, Derivative, Copy, Clone, PartialEq, Eq, Hash)]
-#[derivative(Default)]
+#[derive(Debug, Serialize, Default, Copy, Clone, PartialEq, Eq, Hash)]
 pub enum TransferType {
     /// Recommended transfer point between routes
     #[serde(rename = "0")]
-    #[derivative(Default)]
+    #[default]
     Recommended,
     /// Departing vehicle waits for arriving one
     #[serde(rename = "1")]
@@ -569,12 +560,11 @@ impl<'de> Deserialize<'de> for TransferType {
 }
 
 /// Type of pathway between [from_stop] and [to_stop]
-#[derive(Debug, Serialize, Deserialize, Derivative, Copy, Clone, PartialEq, Eq, Hash)]
-#[derivative(Default)]
+#[derive(Debug, Serialize, Deserialize, Default, Copy, Clone, PartialEq, Eq, Hash)]
 pub enum PathwayMode {
     /// A walkway
     #[serde(rename = "1")]
-    #[derivative(Default)]
+    #[default]
     Walkway,
     /// Stairs
     #[serde(rename = "2")]
@@ -599,12 +589,11 @@ pub enum PathwayMode {
 }
 
 /// Indicates in which direction the pathway can be used
-#[derive(Debug, Serialize, Deserialize, Derivative, Copy, Clone, PartialEq, Eq, Hash)]
-#[derivative(Default)]
+#[derive(Debug, Serialize, Deserialize, Default, Copy, Clone, PartialEq, Eq, Hash)]
 pub enum PathwayDirectionType {
     /// Unidirectional pathway, it can only be used from [from_stop_id] to [to_stop_id].
     #[serde(rename = "0")]
-    #[derivative(Default)]
+    #[default]
     Unidirectional,
     /// Bidirectional pathway, it can be used in the two directions.
     #[serde(rename = "1")]
@@ -632,7 +621,7 @@ pub enum FareMediaType {
 }
 
 /// Specifies if an entry in rider_categories.txt should be considered the default category
-#[derive(Debug, Serialize, Derivative, Copy, Clone, PartialEq, Eq, Hash)]
+#[derive(Debug, Serialize, Copy, Clone, PartialEq, Eq, Hash)]
 pub enum DefaultFareCategory {
     /// Category is not considered the default.
     NotDefault = 0,
@@ -659,11 +648,10 @@ impl<'de> Deserialize<'de> for DefaultFareCategory {
 }
 
 /// Specifies whether tickets can be bought for this item
-#[derive(Debug, Derivative, Deserialize, Serialize, Copy, Clone, PartialEq, Eq)]
-#[derivative(Default)]
+#[derive(Debug, Default, Deserialize, Serialize, Copy, Clone, PartialEq, Eq)]
 pub enum TicketingType {
     /// If a ticketing_deep_link_id is set, tickets are available
-    #[derivative(Default)]
+    #[default]
     #[serde(rename = "0")]
     Available,
     /// Tickets are unavailable
